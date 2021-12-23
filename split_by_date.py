@@ -1,14 +1,14 @@
 import pandas as pd
 import os
-from sys import argv
+
+# from sys import argv
 from os import system
 
 
-FILE_NAME = argv[1]
+# FILE_NAME = argv[1]
 FILE_PATH = "output/"
 FILES = os.listdir(FILE_PATH)
 
-system(f"python split_by_customer.py {FILE_NAME}")
 
 for excel_file in FILES:
     df = pd.read_excel(f"output/" + excel_file, header=0)
