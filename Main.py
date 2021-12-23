@@ -1,12 +1,25 @@
 import os
 from sys import argv
 from os import system
+from tqdm import tqdm
 
 
 FILE_NAME = argv[1]
 FILE_PATH = "output/"
 FILES = os.listdir(FILE_PATH)
 
-system(f"python split_by_customer.py {FILE_NAME}")
-system("python split_by_date.py")
-system("python clear_invoice_data.py")
+commands = [
+    f"python split_by_customer.py {FILE_NAME}",
+    "python split_by_date.py",
+    "python clear_invoice_data.py",
+    "python concat_excel_files.py"
+]
+
+# system(f"python split_by_customer.py {FILE_NAME}")
+# system("python split_by_date.py")
+# system("python clear_invoice_data.py")
+# system("python concat_excel_files.py")
+
+
+for command in tqdm(commands, desc='Processing Excel Files', colour='GREEN', unit='Step'):
+    system(command)

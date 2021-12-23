@@ -8,7 +8,6 @@ COLUMN_NAME = "Customer"
 df = pd.read_excel(FILE_NAME, header=0)
 
 unique_values = df[COLUMN_NAME].unique()
-print(len(unique_values))
 count = 1
 for unique_value in unique_values:
     df_output = df[df[COLUMN_NAME].str.contains(unique_value)]

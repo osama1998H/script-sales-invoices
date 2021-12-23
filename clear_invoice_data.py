@@ -1,20 +1,15 @@
 import os
 import pandas as pd
 
-# from sys import argv
-# from os import system
 
 
-# FILE_NAME = argv[1]
 FILE_PATH = "output/"
 FILES = os.listdir(FILE_PATH)
 
-# system(f"python split_by_customer.py {FILE_NAME}")
-# system("python split_by_date.py")
 
 
 template_name = "heading_template.xlsx"
-# file_name = 'Sales_Invoice for company.xlsx'
+
 
 template_df = pd.read_excel(template_name, header=0)
 
