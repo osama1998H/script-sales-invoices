@@ -1,26 +1,21 @@
 import pandas as pd
 import os
 from sys import argv
+from os import system
 
-# import sys
-from time import sleep
 
-from os import name, system
+FILE_NAME = argv[1]
+FILE_PATH = "output/"
+FILES = os.listdir(FILE_PATH)
 
-file_name = argv[1]
+system(f"python split_by_customer.py {FILE_NAME}")
 
-system(f"python split_by_customer.py {file_name}")
-
-file_path = "output/"
-files = os.listdir(file_path)
-
-for excel_file in files:
+for excel_file in FILES:
     df = pd.read_excel(f"output/" + excel_file, header=0)
 
     column_name = "Date"
 
     unique_values = df[column_name].unique()
-    # print(unique_values)
     count = 1
     count_len_unique_values = len(unique_values)
     for unique_value in unique_values:
@@ -42,5 +37,3 @@ for excel_file in files:
                 system(f"del {deleted_file}")
             count += 1
             count_len_unique_values -= 1
-        print(count_len_unique_values)
-        sleep(0.4)
