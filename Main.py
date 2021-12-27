@@ -18,3 +18,5 @@ for command in tqdm(
     commands, desc="Processing Excel Files", colour="GREEN", unit="Step"
 ):
     system(command)
+    print('\n')
+

@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from tqdm import tqdm
 
 # from sys import argv
 from os import system
@@ -10,7 +11,7 @@ FILE_PATH = "output/"
 FILES = os.listdir(FILE_PATH)
 
 
-for excel_file in FILES:
+for excel_file in tqdm(FILES, desc="Generate Invoices Based On Date: ", colour="GREEN", unit=" Invoice"):
     df = pd.read_excel(f"output/" + excel_file, header=0)
 
     column_name = "Date"

@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from openpyxl import load_workbook
+from tqdm import tqdm
 
 
 FILE_PATH = "output/"
@@ -19,7 +20,9 @@ for column in template_df.columns:
     freq[column] = template_df[column][0]
 
 
-for excel_file in FILES:
+for excel_file in tqdm(
+    FILES, desc="Clear Data |+| Calculate Total Values:  ", colour="GREEN", unit=" File"
+):
 
     main_df = pd.read_excel(FILE_PATH + excel_file, header=0)
 
@@ -60,6 +63,7 @@ for excel_file in FILES:
     total_cord = None
     # Loop will print all columns name
     for i in range(1, max_col + 1):
+
         cell_obj = sheet_object.cell(row=1, column=i)
         if cell_obj.value == "Amount (Items)":
             amount_cord = cell_obj.coordinate
