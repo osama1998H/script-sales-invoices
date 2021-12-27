@@ -6,7 +6,6 @@ FILE_PATH = "output/"
 OUT_FILE_PATH = "out/"
 FILES = os.listdir(FILE_PATH)
 
-# main_df = pd.read_excel("heads.xlsx", header=0)
 main_df = pd.DataFrame()
 
 
