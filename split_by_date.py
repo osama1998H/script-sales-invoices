@@ -11,10 +11,10 @@ FILE_PATH = "output/"
 FILES = os.listdir(FILE_PATH)
 
 
-for excel_file in tqdm(FILES, desc="Generate Invoices Based On Date: ", colour="GREEN", unit=" Invoice"):
-    df = pd.read_excel(f"output/" + excel_file, header=0)
+column_name = "Date"
 
-    column_name = "Date"
+for excel_file in tqdm(FILES, desc="Generate Invoices Based On Date: ", colour="GREEN", unit=" Invoice"):
+    df = pd.read_excel("output/" + excel_file, header=0)
 
     unique_values = df[column_name].unique()
     count = 1
@@ -27,9 +27,7 @@ for excel_file in tqdm(FILES, desc="Generate Invoices Based On Date: ", colour="
 
             name = excel_file.split(".")
             name = name[0]
-            output_file = os.path.join(
-                "output", f"sales_invoices_{name}_{count}" + ".xlsx"
-            )
+            output_file = os.path.join("output", f"sales_invoices_{name}_{count}.xlsx")
             # deleted_file = os.path.join("output", f"{excel_file}")
             deleted_file = "output\\" + f"{excel_file}"
 

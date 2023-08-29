@@ -23,8 +23,13 @@ for excel_file in tqdm(
 
     os.system(f"del {deleted_file}")
 
-main_df.to_excel(OUT_FILE_PATH + "final_exported_data.xlsx", header=True, index=False)
+main_df.to_excel(
+    f"{OUT_FILE_PATH}final_exported_data.xlsx", header=True, index=False
+)
 
 print("\n")
 # print("File Was Exported To: ", OUT_FILE_PATH + "final_exported_data.xlsx")
-print(colored("File Was Exported To: ", 'red'), colored(OUT_FILE_PATH + "final_exported_data.xlsx", 'green'))
+print(
+    colored("File Was Exported To: ", 'red'),
+    colored(f"{OUT_FILE_PATH}final_exported_data.xlsx", 'green'),
+)

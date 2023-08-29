@@ -13,13 +13,7 @@ template_name = "heading_template.xlsx"
 
 template_df = pd.read_excel(template_name, header=0)
 
-# loop over all headings and check values
-freq = {}  # ? this for store heading values
-
-for column in template_df.columns:
-    freq[column] = template_df[column][0]
-
-
+freq = {column: template_df[column][0] for column in template_df.columns}
 for excel_file in tqdm(
     FILES, desc="Clear Data |+| Calculate Total Values:  ", colour="GREEN", unit=" File"
 ):
@@ -40,9 +34,7 @@ for excel_file in tqdm(
                     # ? loop for delete cells in data
 
                     for i, item in enumerate(main_df[column]):
-                        if i == 0:
-                            pass
-                        else:
+                        if i != 0:
                             main_df.at[i, column] = None
 
     main_df.to_excel(FILE_PATH + excel_file, header=True, index=False)
@@ -78,23 +70,23 @@ for excel_file in tqdm(
             total_cord = cell_obj.coordinate
 
     net_amount_cord = "".join([i for i in amount_cord if not i.isdigit()])
-    start_amount_cord = net_amount_cord + "2"
+    start_amount_cord = f"{net_amount_cord}2"
     end_amount_cord = net_amount_cord + str(max_row)
 
     net_quantity_cord = "".join([i for i in quantity_cord if not i.isdigit()])
-    start_quantity_cord = net_quantity_cord + "2"
+    start_quantity_cord = f"{net_quantity_cord}2"
     end_quantity_cord = net_quantity_cord + str(max_row)
 
     #  todo
     net_total_quantity_cord = "".join(
         [i for i in total_quantity_cord if not i.isdigit()]
     )
-    start_total_quantity_cord = net_total_quantity_cord + "2"
+    start_total_quantity_cord = f"{net_total_quantity_cord}2"
     end_total_quantity_cord = net_total_quantity_cord + str(max_row)
     #  todo
 
     net_total_cord = "".join([i for i in total_cord if not i.isdigit()])
-    start_total_cord = net_total_cord + "2"
+    start_total_cord = f"{net_total_cord}2"
     end_total_cord = net_total_cord + str(max_row)
 
     # sheet_object[start_total_quantity_cord] = f"=SUM({start_quantity_cord}:{end_quantity_cord})"
